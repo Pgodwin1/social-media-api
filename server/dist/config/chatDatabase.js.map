@@ -1,0 +1,1 @@
+{"version":3,"file":"chatDatabase.js","sourceRoot":"","sources":["../../src/config/chatDatabase.ts"],"names":[],"mappings":";;AAAA,yCAAsC;AAEtC,MAAM,EAAE,GAAG,IAAI,qBAAS,CAAC,YAAY,EAAE,EAAE,EAAE,EAAE,EAAE;IAC3C,OAAO,EAAE,qBAAqB;IAC9B,OAAO,EAAE,QAAQ;IACjB,OAAO,EAAE,KAAK;CACjB,CAAC,CAAA;AAEF,kBAAe,EAAE,CAAC"}
