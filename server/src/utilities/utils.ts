@@ -5,6 +5,7 @@ export const RegisterUserSchema = Joi.object().keys({
     email: Joi.string().trim().required(),
     password: Joi.string().min(3).regex(/^[a-zA-Z0-9]{3,30}$/).required(),
     profilePicture:  Joi.string(),
+    gender: Joi.string().valid("male","female"),
     coverPicture:  Joi.string(),
     followers:  Joi.array().items(Joi.string().trim()),
     followings:  Joi.array().items(Joi.string().trim()),

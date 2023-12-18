@@ -10,6 +10,7 @@ exports.RegisterUserSchema = joi_1.default.object().keys({
     email: joi_1.default.string().trim().required(),
     password: joi_1.default.string().min(3).regex(/^[a-zA-Z0-9]{3,30}$/).required(),
     profilePicture: joi_1.default.string(),
+    gender: joi_1.default.string().valid("male", "female"),
     coverPicture: joi_1.default.string(),
     followers: joi_1.default.array().items(joi_1.default.string().trim()),
     followings: joi_1.default.array().items(joi_1.default.string().trim()),

@@ -1,103 +1,85 @@
-import { DataTypes, Model } from "sequelize";
-import db from "../config/chatDatabase";
-import { PostInstance } from "./postModel";
+import mongoose from "mongoose";
+// import { PostInstance } from "./postModel";
 
-export interface UserAttributes {
-  id: string;
-  username: string;
-  email: string;
-  password: string;
-  profilePicture: string;
-  coverPicture: string;
-  followers: string[];
-  following: string[];
-  followerCount: number;
-  followingCount: number;
-  isAdmin: boolean;
-  desc: string;
-  city: string;
-  From: string;
-  relationship: number;
-}
-
-export class UserInstance extends Model<UserAttributes, "id"> {}
-
-UserInstance.init(
-  {
+const userSchema = new mongoose.Schema({
     id: {
-      type: DataTypes.UUIDV4,
+      type: String,
       allowNull: false,
       primaryKey: true,
     },
+    gender: {
+      type: String,
+      allowNull: true,
+      defaultValue: "",
+    },
     followerCount: {
-      type: DataTypes.INTEGER,
+      type: Number,
       defaultValue: 0,
     },
     followingCount: {
-      type: DataTypes.INTEGER,
+      type: String,
       defaultValue: 0,
     },
     username: {
-      type: DataTypes.STRING,
+      type: String,
       allowNull: false,
       unique: true,
     },
     email: {
-      type: DataTypes.STRING,
+      type: String,
       allowNull: false,
       unique: true,
     },
     password: {
-      type: DataTypes.STRING,
+      type: String,
       allowNull: false,
     },
     profilePicture: {
-      type: DataTypes.STRING,
+      type: String,
       allowNull: true,
       defaultValue: "",
     },
     coverPicture: {
-      type: DataTypes.STRING,
+      type: String,
       allowNull: true,
       defaultValue: "",
     },
     followers: {
-      type: DataTypes.ARRAY(DataTypes.TEXT),
+      type: [String],
       allowNull: true,
     },
     following: {
-      type: DataTypes.ARRAY(DataTypes.TEXT),
+      type: [String],
       allowNull: true,
     },
     isAdmin: {
-      type: DataTypes.BOOLEAN,
+      type: Boolean,
       allowNull: false,
       defaultValue: false,
     },
     desc: {
-      type: DataTypes.STRING,
+      type: String,
       allowNull: true,
     },
     city: {
-      type: DataTypes.STRING,
+      type: String,
       allowNull: true,
     },
     From: {
-      type: DataTypes.STRING,
+      type: String,
       allowNull: true,
     },
     relationship: {
-      type: DataTypes.INTEGER,
+      type: String,
       allowNull: true,
       defaultValue: 0,
     },
   },
   {
-    sequelize: db,
-    tableName: "users",
     timestamps: true,
   }
 );
 
-UserInstance.hasMany(PostInstance, { foreignKey: "userId", as: "posts" });
-PostInstance.belongsTo(UserInstance, { foreignKey: "userId", as: "users" });
+const User = mongoose.model('User', userSchema);
+
+export default User;

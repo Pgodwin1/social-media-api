@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.auth = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const userModel_1 = require("../model/userModel");
+const userModel_1 = __importDefault(require("../model/userModel"));
 const jwtsecret = process.env.JWT_SECRET;
 function auth(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -27,7 +27,7 @@ function auth(req, res, next) {
             return res.status(401).json({ msg: 'You are not authorised' });
         }
         const { id } = verified;
-        const user = yield userModel_1.UserInstance.findOne({ where: { id } });
+        const user = yield userModel_1.default.findOne({ where: { id } });
         if (!user) {
             return res.status(401).json({ msg: 'Kindly sign in' });
         }
